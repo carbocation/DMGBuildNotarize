@@ -106,3 +106,7 @@ xcodebuild test -project DMGBuildNotarize.xcodeproj -scheme DMGBuildNotarize
 Notarization still goes through Apple. That means the Apple account, certificate, app signature, and notarization profile all need to be valid.
 
 DMGBuildNotarize helps by putting the steps in the right order and making failures easier to see.
+
+## License
+
+DMGBuildNotarize is available under the MIT License. See [LICENSE](LICENSE) for details.
