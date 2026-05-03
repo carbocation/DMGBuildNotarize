@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000000000000000000001 /* DMGBuildNotarizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000001 /* DMGBuildNotarizeApp.swift */; };
+		100000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000002 /* ContentView.swift */; };
+		100000000000000000000003 /* DropTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000003 /* DropTargetView.swift */; };
+		100000000000000000000004 /* StageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000004 /* StageListView.swift */; };
+		100000000000000000000005 /* AppSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000005 /* AppSummaryView.swift */; };
+		100000000000000000000006 /* OutputSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000006 /* OutputSettingsView.swift */; };
+		100000000000000000000007 /* ProgressLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000007 /* ProgressLogView.swift */; };
+		100000000000000000000008 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000008 /* SettingsView.swift */; };
+		100000000000000000000009 /* AppBundleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000009 /* AppBundleInfo.swift */; };
+		10000000000000000000000A /* PackagingJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000A /* PackagingJob.swift */; };
+		10000000000000000000000B /* PackagingStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000B /* PackagingStage.swift */; };
+		10000000000000000000000C /* ValidationReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000C /* ValidationReport.swift */; };
+		10000000000000000000000D /* SigningIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000D /* SigningIdentity.swift */; };
+		10000000000000000000000E /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000E /* AppSettings.swift */; };
+		10000000000000000000000F /* PackagingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000F /* PackagingController.swift */; };
+		100000000000000000000010 /* ProcessRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000010 /* ProcessRunner.swift */; };
+		100000000000000000000011 /* AppValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000011 /* AppValidator.swift */; };
+		100000000000000000000012 /* SigningClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000012 /* SigningClient.swift */; };
+		100000000000000000000013 /* NotaryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000013 /* NotaryClient.swift */; };
+		100000000000000000000014 /* CredentialSetupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000014 /* CredentialSetupService.swift */; };
+		100000000000000000000015 /* DmgBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000015 /* DmgBuilder.swift */; };
+		100000000000000000000016 /* PackagingPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000016 /* PackagingPipeline.swift */; };
+		100000000000000000000017 /* StringSanitizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000017 /* StringSanitizing.swift */; };
+		100000000000000000000018 /* URLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000018 /* URLHelpers.swift */; };
+		100000000000000000000019 /* DMGBuildNotarizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000019 /* DMGBuildNotarizeTests.swift */; };
+		10000000000000000000001A /* CredentialSetupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000001A /* CredentialSetupSheet.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		300000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 700000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 500000000000000000000001;
+			remoteInfo = DMGBuildNotarize;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		200000000000000000000001 /* DMGBuildNotarizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGBuildNotarizeApp.swift; sourceTree = "<group>"; };
+		200000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		200000000000000000000003 /* DropTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTargetView.swift; sourceTree = "<group>"; };
+		200000000000000000000004 /* StageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageListView.swift; sourceTree = "<group>"; };
+		200000000000000000000005 /* AppSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSummaryView.swift; sourceTree = "<group>"; };
+		200000000000000000000006 /* OutputSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSettingsView.swift; sourceTree = "<group>"; };
+		200000000000000000000007 /* ProgressLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLogView.swift; sourceTree = "<group>"; };
+		200000000000000000000008 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		200000000000000000000009 /* AppBundleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBundleInfo.swift; sourceTree = "<group>"; };
+		20000000000000000000000A /* PackagingJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagingJob.swift; sourceTree = "<group>"; };
+		20000000000000000000000B /* PackagingStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagingStage.swift; sourceTree = "<group>"; };
+		20000000000000000000000C /* ValidationReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationReport.swift; sourceTree = "<group>"; };
+		20000000000000000000000D /* SigningIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningIdentity.swift; sourceTree = "<group>"; };
+		20000000000000000000000E /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		20000000000000000000000F /* PackagingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagingController.swift; sourceTree = "<group>"; };
+		200000000000000000000010 /* ProcessRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessRunner.swift; sourceTree = "<group>"; };
+		200000000000000000000011 /* AppValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppValidator.swift; sourceTree = "<group>"; };
+		200000000000000000000012 /* SigningClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningClient.swift; sourceTree = "<group>"; };
+		200000000000000000000013 /* NotaryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotaryClient.swift; sourceTree = "<group>"; };
+		200000000000000000000014 /* CredentialSetupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialSetupService.swift; sourceTree = "<group>"; };
+		200000000000000000000015 /* DmgBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmgBuilder.swift; sourceTree = "<group>"; };
+		200000000000000000000016 /* PackagingPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagingPipeline.swift; sourceTree = "<group>"; };
+		200000000000000000000017 /* StringSanitizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSanitizing.swift; sourceTree = "<group>"; };
+		200000000000000000000018 /* URLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelpers.swift; sourceTree = "<group>"; };
+		200000000000000000000019 /* DMGBuildNotarizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGBuildNotarizeTests.swift; sourceTree = "<group>"; };
+		20000000000000000000001A /* CredentialSetupSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialSetupSheet.swift; sourceTree = "<group>"; };
+		200000000000000000000020 /* DMGBuildNotarize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMGBuildNotarize.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000021 /* DMGBuildNotarizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DMGBuildNotarizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		400000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		400000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		600000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				600000000000000000000002 /* DMGBuildNotarize */,
+				60000000000000000000000A /* DMGBuildNotarizeTests */,
+				60000000000000000000000B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		600000000000000000000002 /* DMGBuildNotarize */ = {
+			isa = PBXGroup;
+			children = (
+				600000000000000000000003 /* App */,
+				600000000000000000000004 /* Views */,
+				600000000000000000000005 /* Models */,
+				600000000000000000000006 /* Stores */,
+				600000000000000000000007 /* Services */,
+				600000000000000000000008 /* Support */,
+			);
+			path = DMGBuildNotarize;
+			sourceTree = "<group>";
+		};
+		600000000000000000000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000001 /* DMGBuildNotarizeApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		600000000000000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000002 /* ContentView.swift */,
+				200000000000000000000003 /* DropTargetView.swift */,
+				200000000000000000000004 /* StageListView.swift */,
+				200000000000000000000005 /* AppSummaryView.swift */,
+				200000000000000000000006 /* OutputSettingsView.swift */,
+				200000000000000000000007 /* ProgressLogView.swift */,
+				200000000000000000000008 /* SettingsView.swift */,
+				20000000000000000000001A /* CredentialSetupSheet.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		600000000000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000009 /* AppBundleInfo.swift */,
+				20000000000000000000000A /* PackagingJob.swift */,
+				20000000000000000000000B /* PackagingStage.swift */,
+				20000000000000000000000C /* ValidationReport.swift */,
+				20000000000000000000000D /* SigningIdentity.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		600000000000000000000006 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000000E /* AppSettings.swift */,
+				20000000000000000000000F /* PackagingController.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		600000000000000000000007 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000010 /* ProcessRunner.swift */,
+				200000000000000000000011 /* AppValidator.swift */,
+				200000000000000000000012 /* SigningClient.swift */,
+				200000000000000000000013 /* NotaryClient.swift */,
+				200000000000000000000014 /* CredentialSetupService.swift */,
+				200000000000000000000015 /* DmgBuilder.swift */,
+				200000000000000000000016 /* PackagingPipeline.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		600000000000000000000008 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000017 /* StringSanitizing.swift */,
+				200000000000000000000018 /* URLHelpers.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		60000000000000000000000A /* DMGBuildNotarizeTests */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000019 /* DMGBuildNotarizeTests.swift */,
+			);
+			path = DMGBuildNotarizeTests;
+			sourceTree = "<group>";
+		};
+		60000000000000000000000B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000020 /* DMGBuildNotarize.app */,
+				200000000000000000000021 /* DMGBuildNotarizeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		500000000000000000000001 /* DMGBuildNotarize */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800000000000000000000002 /* Build configuration list for PBXNativeTarget "DMGBuildNotarize" */;
+			buildPhases = (
+				900000000000000000000001 /* Sources */,
+				400000000000000000000001 /* Frameworks */,
+				900000000000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DMGBuildNotarize;
+			productName = DMGBuildNotarize;
+			productReference = 200000000000000000000020 /* DMGBuildNotarize.app */;
+			productType = "com.apple.product-type.application";
+		};
+		500000000000000000000002 /* DMGBuildNotarizeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800000000000000000000003 /* Build configuration list for PBXNativeTarget "DMGBuildNotarizeTests" */;
+			buildPhases = (
+				900000000000000000000003 /* Sources */,
+				400000000000000000000002 /* Frameworks */,
+				900000000000000000000004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				300000000000000000000002 /* PBXTargetDependency */,
+			);
+			name = DMGBuildNotarizeTests;
+			productName = DMGBuildNotarizeTests;
+			productReference = 200000000000000000000021 /* DMGBuildNotarizeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		700000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					500000000000000000000001 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					500000000000000000000002 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 500000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = 800000000000000000000001 /* Build configuration list for PBXProject "DMGBuildNotarize" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 600000000000000000000001;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 60000000000000000000000B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				500000000000000000000001 /* DMGBuildNotarize */,
+				500000000000000000000002 /* DMGBuildNotarizeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		900000000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		900000000000000000000004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		900000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000001 /* DMGBuildNotarizeApp.swift in Sources */,
+				100000000000000000000002 /* ContentView.swift in Sources */,
+				100000000000000000000003 /* DropTargetView.swift in Sources */,
+				100000000000000000000004 /* StageListView.swift in Sources */,
+				100000000000000000000005 /* AppSummaryView.swift in Sources */,
+				100000000000000000000006 /* OutputSettingsView.swift in Sources */,
+				100000000000000000000007 /* ProgressLogView.swift in Sources */,
+				100000000000000000000008 /* SettingsView.swift in Sources */,
+				10000000000000000000001A /* CredentialSetupSheet.swift in Sources */,
+				100000000000000000000009 /* AppBundleInfo.swift in Sources */,
+				10000000000000000000000A /* PackagingJob.swift in Sources */,
+				10000000000000000000000B /* PackagingStage.swift in Sources */,
+				10000000000000000000000C /* ValidationReport.swift in Sources */,
+				10000000000000000000000D /* SigningIdentity.swift in Sources */,
+				10000000000000000000000E /* AppSettings.swift in Sources */,
+				10000000000000000000000F /* PackagingController.swift in Sources */,
+				100000000000000000000010 /* ProcessRunner.swift in Sources */,
+				100000000000000000000011 /* AppValidator.swift in Sources */,
+				100000000000000000000012 /* SigningClient.swift in Sources */,
+				100000000000000000000013 /* NotaryClient.swift in Sources */,
+				100000000000000000000014 /* CredentialSetupService.swift in Sources */,
+				100000000000000000000015 /* DmgBuilder.swift in Sources */,
+				100000000000000000000016 /* PackagingPipeline.swift in Sources */,
+				100000000000000000000017 /* StringSanitizing.swift in Sources */,
+				100000000000000000000018 /* URLHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		900000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000019 /* DMGBuildNotarizeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		300000000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 500000000000000000000001 /* DMGBuildNotarize */;
+			targetProxy = 300000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		800000000000000000000004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		800000000000000000000005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		800000000000000000000006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = YTU97Z787R;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DMGBuildNotarize;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.carbocation.DMGBuildNotarize;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		800000000000000000000007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = YTU97Z787R;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DMGBuildNotarize;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.carbocation.DMGBuildNotarize;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		800000000000000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.james.DMGBuildNotarizeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DMGBuildNotarize.app/Contents/MacOS/DMGBuildNotarize";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		800000000000000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.james.DMGBuildNotarizeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DMGBuildNotarize.app/Contents/MacOS/DMGBuildNotarize";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		800000000000000000000001 /* Build configuration list for PBXProject "DMGBuildNotarize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800000000000000000000004 /* Debug */,
+				800000000000000000000005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800000000000000000000002 /* Build configuration list for PBXNativeTarget "DMGBuildNotarize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800000000000000000000006 /* Debug */,
+				800000000000000000000007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800000000000000000000003 /* Build configuration list for PBXNativeTarget "DMGBuildNotarizeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800000000000000000000008 /* Debug */,
+				800000000000000000000009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 700000000000000000000001 /* Project object */;
+}
