@@ -287,6 +287,122 @@ final class DMGBuildNotarizeTests: XCTestCase {
         try? builder.clean(context: context)
     }
 
+    func testFinderLayoutFlushesVolumeMetadataBeforeDetach() async throws {
+        let appURL = try makeFixtureApp(displayName: "Fixture App", version: "1.2.3")
+        let info = try AppBundleInfo.load(from: appURL)
+        let outputURL = temporaryDirectory().appendingPathComponent("Fixture.dmg")
+        let job = PackagingJob(
+            appInfo: info,
+            outputURL: outputURL,
+            volumeName: info.defaultVolumeName,
+            signingIdentity: SigningIdentity(hash: "ABC", name: "Developer ID Application: Example"),
+            notaryProfile: "DeveloperID",
+            replaceExistingOutput: false
+        )
+        let runner = MockProcessRunner()
+        let builder = DmgBuilder(runner: runner)
+        let context = try builder.createContext(for: job)
+
+        try await builder.applyFinderLayout(job: job, context: context)
+
+        XCTAssertEqual(runner.commands.map(\.executableURL.path), [
+            "/usr/bin/hdiutil",
+            "/usr/bin/osascript",
+            "/usr/bin/osascript",
+            "/usr/bin/SetFile",
+            "/bin/sync",
+            "/usr/bin/hdiutil"
+        ])
+        XCTAssertEqual(runner.commands[4].arguments, [])
+        XCTAssertEqual(runner.commands[5].arguments.first, "detach")
+        try? builder.clean(context: context)
+    }
+
+    func testDmgContextUsesTemporaryCompressedOutputBeforeFinalPublish() throws {
+        let appURL = try makeFixtureApp(displayName: "Fixture App", version: "1.2.3")
+        let info = try AppBundleInfo.load(from: appURL)
+        let finalOutputURL = temporaryDirectory().appendingPathComponent("Fixture Final.dmg")
+        let job = PackagingJob(
+            appInfo: info,
+            outputURL: finalOutputURL,
+            volumeName: info.defaultVolumeName,
+            signingIdentity: SigningIdentity(hash: "ABC", name: "Developer ID Application: Example"),
+            notaryProfile: "DeveloperID",
+            replaceExistingOutput: false
+        )
+        let builder = DmgBuilder(runner: MockProcessRunner())
+
+        let context = try builder.createContext(for: job)
+
+        XCTAssertEqual(context.finalOutputURL, finalOutputURL)
+        XCTAssertEqual(context.compressedImageURL.lastPathComponent, finalOutputURL.lastPathComponent)
+        XCTAssertTrue(context.compressedImageURL.path.hasPrefix(context.workDirectory.path))
+        XCTAssertNotEqual(context.compressedImageURL, finalOutputURL)
+        try? builder.clean(context: context)
+    }
+
+    func testPrepareOutputAllowsReplacementWithoutRemovingExistingOutput() throws {
+        let builder = DmgBuilder(runner: MockProcessRunner())
+        let outputURL = temporaryDirectory().appendingPathComponent("Fixture.dmg")
+        try FileManager.default.createDirectory(at: outputURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try "existing".write(to: outputURL, atomically: true, encoding: .utf8)
+
+        try builder.prepareOutput(outputURL, replaceExisting: true)
+
+        XCTAssertEqual(try String(contentsOf: outputURL, encoding: .utf8), "existing")
+    }
+
+    func testPublishOutputMovesTemporaryDmgToFinalOutput() throws {
+        let appURL = try makeFixtureApp(displayName: "Fixture App", version: "1.2.3")
+        let info = try AppBundleInfo.load(from: appURL)
+        let finalOutputURL = temporaryDirectory().appendingPathComponent("Fixture.dmg")
+        let job = PackagingJob(
+            appInfo: info,
+            outputURL: finalOutputURL,
+            volumeName: info.defaultVolumeName,
+            signingIdentity: SigningIdentity(hash: "ABC", name: "Developer ID Application: Example"),
+            notaryProfile: "DeveloperID",
+            replaceExistingOutput: false
+        )
+        let builder = DmgBuilder(runner: MockProcessRunner())
+        let context = try builder.createContext(for: job)
+        try FileManager.default.createDirectory(at: context.compressedImageURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: finalOutputURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try "temporary dmg".write(to: context.compressedImageURL, atomically: true, encoding: .utf8)
+
+        try builder.publishOutput(context: context, replaceExisting: false)
+
+        XCTAssertFalse(FileManager.default.fileExists(atPath: context.compressedImageURL.path))
+        XCTAssertEqual(try String(contentsOf: finalOutputURL, encoding: .utf8), "temporary dmg")
+        try? builder.clean(context: context)
+    }
+
+    func testPublishOutputReplacesExistingFinalOutputAtTheEnd() throws {
+        let appURL = try makeFixtureApp(displayName: "Fixture App", version: "1.2.3")
+        let info = try AppBundleInfo.load(from: appURL)
+        let finalOutputURL = temporaryDirectory().appendingPathComponent("Fixture.dmg")
+        let job = PackagingJob(
+            appInfo: info,
+            outputURL: finalOutputURL,
+            volumeName: info.defaultVolumeName,
+            signingIdentity: SigningIdentity(hash: "ABC", name: "Developer ID Application: Example"),
+            notaryProfile: "DeveloperID",
+            replaceExistingOutput: true
+        )
+        let builder = DmgBuilder(runner: MockProcessRunner())
+        let context = try builder.createContext(for: job)
+        try FileManager.default.createDirectory(at: context.compressedImageURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: finalOutputURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try "old dmg".write(to: finalOutputURL, atomically: true, encoding: .utf8)
+        try "new dmg".write(to: context.compressedImageURL, atomically: true, encoding: .utf8)
+
+        try builder.publishOutput(context: context, replaceExisting: true)
+
+        XCTAssertFalse(FileManager.default.fileExists(atPath: context.compressedImageURL.path))
+        XCTAssertEqual(try String(contentsOf: finalOutputURL, encoding: .utf8), "new dmg")
+        try? builder.clean(context: context)
+    }
+
     func testFinderLayoutPositionsWindowItems() {
         let script = DmgBuilder(runner: MockProcessRunner())
             .debugFinderLayoutScript(appName: "Fixture.app", mountPath: "/tmp/Mounted Fixture")
@@ -294,6 +410,10 @@ final class DMGBuildNotarizeTests: XCTestCase {
         XCTAssertTrue(script.contains("set appItem to item \"Fixture.app\" of diskWindow"))
         XCTAssertTrue(script.contains("set applicationsItem to item \"Applications\" of diskWindow"))
         XCTAssertTrue(script.contains("set position of applicationsItem to {430, 170}"))
+        XCTAssertTrue(script.contains("set text size of iconViewOptions to 12"))
+        XCTAssertTrue(script.contains("set label position of iconViewOptions to bottom"))
+        XCTAssertTrue(script.contains("delay 1"))
+        XCTAssertFalse(script.contains("open diskFolder"))
         XCTAssertFalse(script.contains("set position of item \"Applications\" of diskFolder"))
     }
 

@@ -1,10 +1,12 @@
+import AppKit
 import Foundation
 
 struct DmgBuildContext: Equatable {
     let workDirectory: URL
     let stagedDirectory: URL
     let readWriteImageURL: URL
-    let outputURL: URL
+    let compressedImageURL: URL
+    let finalOutputURL: URL
     let mountedVolumeURL: URL
 }
 
@@ -27,7 +29,8 @@ struct DmgBuilder: @unchecked Sendable {
             workDirectory: base,
             stagedDirectory: base.appendingPathComponent("stage", isDirectory: true),
             readWriteImageURL: base.appendingPathComponent("\(volumeName).rw.dmg"),
-            outputURL: job.outputURL,
+            compressedImageURL: base.appendingPathComponent(job.outputURL.lastPathComponent),
+            finalOutputURL: job.outputURL,
             mountedVolumeURL: base.appendingPathComponent("mount", isDirectory: true)
         )
     }
@@ -41,8 +44,6 @@ struct DmgBuilder: @unchecked Sendable {
         guard replaceExisting else {
             throw DmgBuilderError.outputAlreadyExists(outputURL.path)
         }
-
-        try fileManager.removeItem(at: outputURL)
     }
 
     func stageVolume(job: PackagingJob, context: DmgBuildContext) throws {
@@ -94,17 +95,29 @@ struct DmgBuilder: @unchecked Sendable {
             )
 
             try await runner.run(
+                .system("/usr/bin/osascript", ["-e", openFinderWindowScript(mountPath: context.mountedVolumeURL.path)]),
+                onOutput: onOutput
+            )
+
+            await MainActor.run {
+                NSApplication.shared.activate()
+            }
+
+            try await runner.run(
                 .system("/usr/bin/osascript", ["-e", finderLayoutScript(appName: job.appInfo.appFileName, mountPath: context.mountedVolumeURL.path)]),
                 onOutput: onOutput
             )
 
             try await runner.run(.system("/usr/bin/SetFile", ["-a", "C", context.mountedVolumeURL.path]), onOutput: onOutput)
+            try await runner.run(.system("/bin/sync", []), onOutput: onOutput)
         } catch {
             try? await detachMountedVolume(context: context, force: true, onOutput: onOutput)
+            await activateCurrentApplication()
             throw error
         }
 
         try await detachMountedVolume(context: context, force: false, onOutput: onOutput)
+        await activateCurrentApplication()
     }
 
     func convertCompressedImage(context: DmgBuildContext, onOutput: @escaping @Sendable (String) -> Void = { _ in }) async throws {
@@ -119,7 +132,7 @@ struct DmgBuilder: @unchecked Sendable {
                     "-imagekey",
                     "zlib-level=9",
                     "-o",
-                    context.outputURL.path
+                    context.compressedImageURL.path
                 ]
             ),
             onOutput: onOutput
@@ -128,6 +141,28 @@ struct DmgBuilder: @unchecked Sendable {
 
     func verifyImage(_ dmgURL: URL, onOutput: @escaping @Sendable (String) -> Void = { _ in }) async throws {
         try await runner.run(.system("/usr/bin/hdiutil", ["verify", dmgURL.path]), onOutput: onOutput)
+    }
+
+    func publishOutput(context: DmgBuildContext, replaceExisting: Bool) throws {
+        guard context.finalOutputURL.hasReachableDirectoryParent else {
+            throw DmgBuilderError.outputDirectoryMissing(context.finalOutputURL.deletingLastPathComponent().path)
+        }
+
+        guard fileManager.fileExists(atPath: context.finalOutputURL.path) else {
+            try fileManager.moveItem(at: context.compressedImageURL, to: context.finalOutputURL)
+            return
+        }
+
+        guard replaceExisting else {
+            throw DmgBuilderError.outputAlreadyExists(context.finalOutputURL.path)
+        }
+
+        _ = try fileManager.replaceItemAt(
+            context.finalOutputURL,
+            withItemAt: context.compressedImageURL,
+            backupItemName: nil,
+            options: []
+        )
     }
 
     func clean(context: DmgBuildContext) throws {
@@ -144,12 +179,26 @@ struct DmgBuilder: @unchecked Sendable {
         try await runner.run(.system("/usr/bin/hdiutil", arguments), onOutput: onOutput)
     }
 
-    private func finderLayoutScript(appName: String, mountPath: String) -> String {
+    private func activateCurrentApplication() async {
+        await MainActor.run {
+            NSApplication.shared.activate()
+        }
+    }
+
+    private func openFinderWindowScript(mountPath: String) -> String {
         """
         tell application "Finder"
             set diskFolder to POSIX file \(mountPath.debugDescription) as alias
             open diskFolder
             delay 0.2
+        end tell
+        """
+    }
+
+    private func finderLayoutScript(appName: String, mountPath: String) -> String {
+        """
+        tell application "Finder"
+            set diskFolder to POSIX file \(mountPath.debugDescription) as alias
             set diskWindow to container window of diskFolder
             tell diskWindow
                 set current view to icon view
@@ -160,12 +209,16 @@ struct DmgBuilder: @unchecked Sendable {
             set iconViewOptions to icon view options of diskWindow
             set arrangement of iconViewOptions to not arranged
             set icon size of iconViewOptions to 96
+            set text size of iconViewOptions to 12
+            set label position of iconViewOptions to bottom
             set appItem to item \(appName.debugDescription) of diskWindow
             set applicationsItem to item "Applications" of diskWindow
             set position of appItem to {180, 170}
             set position of applicationsItem to {430, 170}
             update diskFolder without registering applications
+            delay 1
             close diskWindow
+            delay 0.5
         end tell
         """
     }

@@ -45,18 +45,20 @@ struct PackagingPipeline: @unchecked Sendable {
             try await dmgBuilder.convertCompressedImage(context: context, onOutput: onOutput)
 
             onStage(.signDMG)
-            try await signingClient.signDMG(job.outputURL, identity: job.signingIdentity, onOutput: onOutput)
+            try await signingClient.signDMG(context.compressedImageURL, identity: job.signingIdentity, onOutput: onOutput)
 
             onStage(.notarize)
-            let submission = try await notaryClient.submitAndWait(dmgURL: job.outputURL, keychainProfile: job.notaryProfile, onOutput: onOutput)
+            let submission = try await notaryClient.submitAndWait(dmgURL: context.compressedImageURL, keychainProfile: job.notaryProfile, onOutput: onOutput)
             submissionID = submission.id
 
             onStage(.staple)
-            try await notaryClient.staple(dmgURL: job.outputURL, onOutput: onOutput)
+            try await notaryClient.staple(dmgURL: context.compressedImageURL, onOutput: onOutput)
 
             onStage(.verify)
-            try await notaryClient.validateStaple(dmgURL: job.outputURL, onOutput: onOutput)
-            try await dmgBuilder.verifyImage(job.outputURL, onOutput: onOutput)
+            try await notaryClient.validateStaple(dmgURL: context.compressedImageURL, onOutput: onOutput)
+            try await dmgBuilder.verifyImage(context.compressedImageURL, onOutput: onOutput)
+
+            try dmgBuilder.publishOutput(context: context, replaceExisting: job.replaceExistingOutput)
 
             try? dmgBuilder.clean(context: context)
             return PackagingResult(outputURL: job.outputURL, notarizationID: submissionID)
